@@ -10,7 +10,7 @@
 </head>
 
 <body class="">
-  <h1 class="text-center mt-4 text-light">Food Basics Online Shopping Page</h3>
+  <h1 class="text-center mt-4 text-light">Store of Convenience - Online Shopping Page</h3>
   <div class="container center bg-light no-padding">
 
     <!-- Tab links, each one with an onclick event associated with it -->
@@ -83,13 +83,13 @@
       <div id="displayCart"></div>
 
       <div class="container text-center">
-        <button type="button" class="btn btn-success m-*-auto">Purchase Items</button>
+        <button type="button" class="btn btn-success m-*-auto" onclick="openInfo(event, 'Shipping')">Purchase Items and ship</button>
       </div>
     </div>
 
     <div id="Shipping" class="tabcontent">
       <h3 class="text-center mt-2 mb-3">Shipping Information</h3>
-      <p>Please enter shipping information for delivery</p>
+      <p>Before we ship your purchases items we first need to get your shipping information</p>
 
       <div class="form-group mb-5">
         <p>What province are you located in?</p>
@@ -121,20 +121,10 @@
       </div>
       <div class="container text-center">
         <button id="shippingInfo" type="button" class="block btn btn-success">
-          Save Shipping Information
+          Save Shipping Information and Deliver
         </button>
       </div>
 
-    </div>
-
-    <div id="LogIn" class="tabcontent">
-      <h3>Login</h3>
-      <p>Here is your cart.</p>
-      <div id="displayCart"></div>
-
-      <div class="container text-center">
-        <button type="button" class="btn btn-success m-*-auto">Purchase Items</button>
-      </div>
     </div>
 
     <div id="Login" class="tabcontent">
