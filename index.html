@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<link href="styles/style.css" rel="stylesheet" type="text/css">
+  <link href="styles/login.css" rel="stylesheet" type="text/css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+  <title>Grocery Store Checkout</title>
+</head>
+
+<body class="">
+  <h1 class="text-center mt-4 text-light">Food Basics Online Shopping Page</h3>
+  <div class="container center bg-light no-padding">
+
+    <!-- Tab links, each one with an onclick event associated with it -->
+    <div class="tab">
+      <button class="tablinks" onclick="openInfo(event, 'Client')">Client</button>
+      <button class="tablinks" onclick="openInfo(event, 'Products')">Products</button>
+      <button class="tablinks" onclick="openInfo(event, 'Cart')">Cart</button>
+      <button class="tablinks" onclick="openInfo(event, 'Shipping')">Shipping</button>
+      <button class="tablinks" onclick="openInfo(event, 'Login')">Login</button>
+    </div>
+    
+    <!-- Tab content -->
+    <div id="Client" class="tabcontent starterTab">
+      <h3 class="text-center mt-2 mb-3">Client Information</h3>
+      <p>Please provide some information on your purchasing restrictions to speed up your shopping process</p>
+    
+      <div class="mb-5">
+        <p>Diety Restrictions</p>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" onchange="manageRestrictions('Nut Allergy', this.checked)">
+            <label class="form-check-label" for="defaultCheck1">
+              Nut Allergy
+            </label>
+        </div>
+    
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="defaultCheck2" onchange="manageRestrictions('Lactose Intollerance', this.checked)">
+            <label class="form-check-label" for="defaultCheck2">
+              Lactose Intollerance
+            </label>
+        </div>
+    
+      </div>
+      <div class="form-group mb-5">
+        <p>Should the items displayed be organic only, non organic only, or both</p>
+        <select id="profit" class="form-control" onchange="managePreference(this.value)">
+          <option value="Both">Organic and Non-Organic</option>
+            <option value="Organic">Organic Only</option>
+            <option value="NonOrganic">Non-Organic Only</option>
+        </select>
+      </div>
+    
+      <div class="form-group mb-5">
+        <p>What is your price limit</p>
+        <input type="number" placeholder="Please insert your maximum price in order to remove any items that are over your price range. Using 0 will not filter prices" class="form-control" onchange="managePrice(this.value)">
+      </div>
+
+      <div class="container text-center mb-2">
+        <button type="button" class="btn btn-info m-*-auto" id="modalOpener">Preview Items available for Purchase</button>
+      </div>
+
+      <div class="container text-center">
+        <button type="button" class="btn btn-success m-*-auto" onclick="openInfo(event,'Products')">Select Items available for purchase</button>
+      </div>
+    </div>
+    
+    <div id="Products" class="tabcontent">
+      <h3>Your targeted products</h3>
+      <p>We preselected products based on your restrictions.</p>
+      Choose items to buy:
+      <div id="displayProduct"></div>
+      <button id="addCart" type="button" class="block btn btn-success" onclick="selectedItems();openInfo(event, 'Cart')">
+        Add selected items to cart.
+      </button>
+    </div>
+
+    <div id="Cart" class="tabcontent">
+      <h3>Cart</h3>
+      <p>Here is your cart.</p>
+      <div id="displayCart"></div>
+
+      <div class="container text-center">
+        <button type="button" class="btn btn-success m-*-auto">Purchase Items</button>
+      </div>
+    </div>
+
+    <div id="Shipping" class="tabcontent">
+      <h3 class="text-center mt-2 mb-3">Shipping Information</h3>
+      <p>Please enter shipping information for delivery</p>
+
+      <div class="form-group mb-5">
+        <p>What province are you located in?</p>
+        <select id="province" class="form-control">
+          <option value="Ontario">Ontario</option>
+          <option value="Quebec">Quebec</option>
+          <option value="Nova Scotia">Nova Scotia</option>
+          <option value="New Brunswick">New Brunswick</option>
+          <option value="Manitoba">Manitoba</option>
+          <option value="British Columbia">British Columbia</option>
+          <option value="Prince Edward Island">Prince Edward Island</option>
+          <option value="Saskatchewan">Saskatchewan</option>
+          <option value="Alberta">Alberta</option>
+          <option value="Newfoundland and Labrador">Newfoundland and Labrador</option>
+          <option value="Northwest Territories">Northwest Territories</option>
+          <option value="Yukon">Yukon</option>
+          <option value="Nunavut">Nunavut</option>
+        </select>
+      </div>
+
+      <div class="form-group mb-5">
+        <p>What is the address the items should be shipped to</p>
+        <input type="text" placeholder="Please Enter address" class="form-control">
+      </div>
+
+      <div class="form-group mb-5">
+        <p>What is the postal code</p>
+        <input type="text" placeholder="Please Enter address" class="form-control">
+      </div>
+      <div class="container text-center">
+        <button id="shippingInfo" type="button" class="block btn btn-success">
+          Save Shipping Information
+        </button>
+      </div>
+
+    </div>
+
+    <div id="LogIn" class="tabcontent">
+      <h3>Login</h3>
+      <p>Here is your cart.</p>
+      <div id="displayCart"></div>
+
+      <div class="container text-center">
+        <button type="button" class="btn btn-success m-*-auto">Purchase Items</button>
+      </div>
+    </div>
+
+    <div id="Login" class="tabcontent">
+      <form class="loginForm">
+        <div class="container">
+          <div class="form-group mb-2">
+            <p>Username</p>
+            <input type="text" placeholder="Please Enter Username" class="form-control" required>
+          </div>
+      
+          <div class="form-group mb-2">
+            <p>Password</p>
+            <input type="password" placeholder="Please Enter Password" class="form-control" required>
+          </div>
+      
+          <div class="container text-center">
+            <button id="loginButton" type="button" class="block btn btn-success">
+              Login
+            </button>
+            <button id="registerButton" type="button" class="block btn btn-info">
+              Register
+            </button>
+            <p class="info">Pressing the register button will create a new account with the info added above.</p>
+          </div>
+      
+          <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+              <label class="form-check-label" for="defaultCheck1">
+                Remember me?
+              </label>
+          </div>
+        </div>
+      </form>
+    </div>
+
+
+  </div>
+
+  <div class="container text-center signature text-light">
+    <p> Website created by Youcef Ben Ali</p>
+</div>
+
+<div id="productsModal" class="modal">
+  <div id="Products-Widget" class="modal-content">
+    <span class="close">&times;</span>
+    <h3>Your targeted products</h3>
+    <p>We preselected products based on your restrictions.</p>
+    Here is a preview of the item list:
+    <div id="previewProduct"></div>
+    <button id="shippingInfo" type="button" class="block btn btn-success" onclick="closeModal()">
+      Close
+    </button>
+    
+  </div>
+</div>
+
+
+
+<script src="scripts/groceries.js"></script>
+<script src="scripts/main.js"></script>
+<script src="scripts/modal.js"></script>
+
+</body>
+</html>
